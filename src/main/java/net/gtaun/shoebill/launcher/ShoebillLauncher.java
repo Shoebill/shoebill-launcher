@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ShoebillLauncher
 {
-	private static final String SHOEBILL_PATH = "./shoebill/";
+	private static final String SHOEBILL_PATH = "shoebill/";
 	
 	private static final String BOOTSTRAP_FOLDER_NAME = "bootstrap";
 	private static final String LIBRARIES_FOLDER_NAME = "libraries";
@@ -31,55 +31,54 @@ public class ShoebillLauncher
 	};
 	
 	
-	public static boolean resolveDependencies() throws Throwable
+	@SuppressWarnings("unchecked")
+	public static List<File> resolveDependencies() throws Throwable
 	{
 		File folder = new File(SHOEBILL_PATH + BOOTSTRAP_FOLDER_NAME);
-		ClassLoader classLoader = createUrlClassLoader(new File[]{folder}, null);
+		ClassLoader classLoader = createUrlClassLoader(folder.listFiles(JAR_FILENAME_FILTER), null);
 		Class<?> clz = classLoader.loadClass(DEPENDENCY_MANAGER_CLASS_NAME);
-		Method method = clz.getMethod("main", String[].class);
+		Method method = clz.getMethod("resolveDependencies");
+		
+		List<File> files;
 		
 		try
 		{
-			method.invoke(null, (Object)null);
+			files = (List<File>) method.invoke(null);
 		}
 		catch (InvocationTargetException e)
 		{
 			throw e.getTargetException();
 		}
 		
-		return true;
+		return files;
 	}
 	
-	public static Object createShoebill() throws Throwable
+	public static Object createShoebill(List<File> files) throws Throwable
 	{
-		File folder = new File(SHOEBILL_PATH + LIBRARIES_FOLDER_NAME);
-		ClassLoader classLoader = createUrlClassLoader(new File[]{folder}, null);
+		File[] fileArray = new File[files.size()];
+		files.toArray(fileArray);
+		
+		ClassLoader classLoader = createUrlClassLoader(fileArray, null);
 		Class<?> clz = classLoader.loadClass(SHOEBILL_IMPL_CLASS_NAME);
 		Constructor<?> constructor = clz.getConstructor();
 		return constructor.newInstance();
 	}
 	
-	private static URLClassLoader createUrlClassLoader(File[] folders, ClassLoader parent)
+	private static URLClassLoader createUrlClassLoader(File[] files, ClassLoader parent)
 	{
 		List<URL> urls = new ArrayList<>();
 		
-		for(File folder : folders)
+		for(File file : files)
 		{
-			File[] files = folder.listFiles(JAR_FILENAME_FILTER);
-			if(files == null) continue;
-			
-			for (File file : files)
+			try
 			{
-				try
-				{
-					URL url = file.toURI().toURL();
-					urls.add(url);
-				}
-				catch (MalformedURLException e)
-				{
-					e.printStackTrace();
-				}
-			}	
+				URL url = file.toURI().toURL();
+				urls.add(url);
+			}
+			catch (MalformedURLException e)
+			{
+				e.printStackTrace();
+			}
 		}
 		
 		URL[] urlArray = urls.toArray(new URL[urls.size()]);
