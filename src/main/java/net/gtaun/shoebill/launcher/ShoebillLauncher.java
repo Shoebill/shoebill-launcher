@@ -14,9 +14,7 @@ import java.util.List;
 public class ShoebillLauncher
 {
 	private static final String SHOEBILL_PATH = "shoebill/";
-	
-	private static final String BOOTSTRAP_FOLDER_NAME = "bootstrap";
-	private static final String LIBRARIES_FOLDER_NAME = "libraries";
+	private static final String BOOTSTRAP_FOLDER_NAME = "bootstrap/";
 	
 	private static final String DEPENDENCY_MANAGER_CLASS_NAME = "net.gtaun.shoebill.dependency.ShoebillDependencyManager";
 	private static final String SHOEBILL_IMPL_CLASS_NAME = "net.gtaun.shoebill.ShoebillImpl";
