@@ -1,7 +1,10 @@
 package net.gtaun.shoebill.launcher;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FilenameFilter;
+import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,9 +22,6 @@ public class ShoebillLauncher
 	private static final String SHOEBILL_PATH = "shoebill/";
 	private static final String BOOTSTRAP_FOLDER_NAME = "bootstrap/";
 	
-	private static final String DEPENDENCY_MANAGER_CLASS_NAME = "net.gtaun.shoebill.dependency.ShoebillDependencyManager";
-	private static final String SHOEBILL_IMPL_CLASS_NAME = "net.gtaun.shoebill.ShoebillImpl";
-	
 	private static final FilenameFilter JAR_FILENAME_FILTER = new FilenameFilter()
 	{
 		@Override
@@ -36,7 +36,12 @@ public class ShoebillLauncher
 	{
 		File folder = new File(SHOEBILL_PATH, BOOTSTRAP_FOLDER_NAME);
 		ClassLoader classLoader = createUrlClassLoader(folder.listFiles(JAR_FILENAME_FILTER), null);
-		Class<?> clz = classLoader.loadClass(DEPENDENCY_MANAGER_CLASS_NAME);
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("dependencyManagerImpl.txt")));
+		String implClass = reader.readLine();
+		reader.close();
+		
+		Class<?> clz = classLoader.loadClass(implClass);
 		Method method = clz.getMethod("resolveDependencies");
 		
 		try
@@ -55,11 +60,13 @@ public class ShoebillLauncher
 		Map<String, Object> properties = Map.class.cast(context);
 		List<File> files = List.class.cast(properties.get(PROPERTY_JAR_FILES));
 		
-		File[] fileArray = new File[files.size()];
-		files.toArray(fileArray);
+		ClassLoader classLoader = createUrlClassLoader(files.toArray(new File[0]), null);
 		
-		ClassLoader classLoader = createUrlClassLoader(fileArray, null);
-		Class<?> clz = classLoader.loadClass(SHOEBILL_IMPL_CLASS_NAME);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("shoebillImpl.txt")));
+		String implClass = reader.readLine();
+		reader.close();
+		
+		Class<?> clz = classLoader.loadClass(implClass);
 		Constructor<?> constructor = clz.getConstructor();
 		
 		try
