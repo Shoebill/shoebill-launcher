@@ -34,22 +34,24 @@ public class ShoebillLauncher
 	public static Object resolveDependencies() throws Throwable
 	{
 		File folder = new File(SHOEBILL_PATH, BOOTSTRAP_FOLDER_NAME);
-		ClassLoader classLoader = createUrlClassLoader(folder.listFiles(JAR_FILENAME_FILTER), null);
 		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("dependencyManagerImpl.txt")));
-		String implClass = reader.readLine();
-		reader.close();
-		
-		Class<?> clz = classLoader.loadClass(implClass);
-		Method method = clz.getMethod("resolveDependencies");
-		
-		try
+		try(URLClassLoader classLoader = createUrlClassLoader(folder.listFiles(JAR_FILENAME_FILTER), null))
 		{
-			return method.invoke(null);
-		}
-		catch (InvocationTargetException e)
-		{
-			throw e.getTargetException();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("dependencyManagerImpl.txt")));
+			String implClass = reader.readLine();
+			reader.close();
+			
+			Class<?> clz = classLoader.loadClass(implClass);
+			Method method = clz.getMethod("resolveDependencies");
+			
+			try
+			{
+				return method.invoke(null);
+			}
+			catch (InvocationTargetException e)
+			{
+				throw e.getTargetException();
+			}
 		}
 	}
 
@@ -59,7 +61,7 @@ public class ShoebillLauncher
 		Map<String, Object> properties = Map.class.cast(context);
 		List<File> files = List.class.cast(properties.get(PROPERTY_JAR_FILES));
 		
-		ClassLoader classLoader = createUrlClassLoader(files.toArray(new File[0]), null);
+		URLClassLoader classLoader = createUrlClassLoader(files.toArray(new File[0]), null);
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("shoebillImpl.txt")));
 		String implClass = reader.readLine();
