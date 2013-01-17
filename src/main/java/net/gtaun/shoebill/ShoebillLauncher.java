@@ -31,8 +31,9 @@ public class ShoebillLauncher
 	};
 
 	
-	public static void loadNativeLibrary()
+	public static void loadNativeLibrary() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
+		ClassLoader.getSystemClassLoader().loadClass("net.gtaun.shoebill.SampNativeFunction");
 		SampNativeFunction.loadLibrary();
 	}
 	
@@ -66,7 +67,7 @@ public class ShoebillLauncher
 		Map<String, Object> properties = Map.class.cast(context);
 		List<File> files = List.class.cast(properties.get(PROPERTY_JAR_FILES));
 		
-		URLClassLoader classLoader = createUrlClassLoader(files.toArray(new File[0]), null);
+		URLClassLoader classLoader = createUrlClassLoader(files.toArray(new File[0]), ClassLoader.getSystemClassLoader());
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("shoebillImpl.txt")));
 		String implClass = reader.readLine();
