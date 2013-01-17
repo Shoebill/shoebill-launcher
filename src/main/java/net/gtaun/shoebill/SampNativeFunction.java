@@ -28,7 +28,7 @@ public final class SampNativeFunction
 	private static final String LIBRARY_PATH = "plugins/";
 	private static final String LIBRARY_NAME = "Shoebill";
 	
-	static
+	public static void loadLibrary()
 	{
 		File libraryDll = new File(LIBRARY_PATH + LIBRARY_NAME + ".dll");
 		File librarySo  = new File(LIBRARY_PATH + LIBRARY_NAME);
@@ -40,15 +40,8 @@ public final class SampNativeFunction
 		}
 		catch (UnsatisfiedLinkError e)
 		{
-			try
-			{
-				if (librarySo.exists()) System.load(librarySo.getAbsolutePath());
-				else throw e;
-			}
-			catch (Exception e2)
-			{
-				System.out.println("Error: Unable to load Shoebill JNI library.");
-			}
+			if (librarySo.exists()) System.load(librarySo.getAbsolutePath());
+			else throw e;
 		}
 	}
 	

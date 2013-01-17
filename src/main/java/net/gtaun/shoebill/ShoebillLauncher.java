@@ -29,7 +29,12 @@ public class ShoebillLauncher
 			return name.endsWith(".jar");
 		}
 	};
+
 	
+	public static void loadNativeLibrary()
+	{
+		SampNativeFunction.loadLibrary();
+	}
 	
 	public static Object resolveDependencies() throws Throwable
 	{
