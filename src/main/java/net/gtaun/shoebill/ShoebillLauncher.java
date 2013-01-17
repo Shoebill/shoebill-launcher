@@ -1,4 +1,4 @@
-package net.gtaun.shoebill.launcher;
+package net.gtaun.shoebill;
 
 import java.io.BufferedReader;
 import java.io.File;
