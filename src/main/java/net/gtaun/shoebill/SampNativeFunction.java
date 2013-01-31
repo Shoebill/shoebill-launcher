@@ -187,7 +187,10 @@ public final class SampNativeFunction
 	public static native void playerTextDrawShow(int playerid, int textId);
 	public static native void playerTextDrawHide(int playerid, int textId);
 	public static native void playerTextDrawSetString(int playerid, int textId, String string);
-	
+	public static native void playerTextDrawSetPreviewModel(int playerid, String text, int modelindex);
+	public static native void playerTextDrawSetPreviewRot(int playerid, String text, float fRotX, float fRotY, float fRotZ, float fZoom);
+	public static native void playerTextDrawSetPreviewVehCol(int playerid, String text, int color1, int color2);
+
 	// Per-player variable system (PVars)
 	public static native void setPVarInt(int playerid, String varname, int int_value);
 	public static native int getPVarInt(int playerid, String varname);
@@ -300,6 +303,7 @@ public final class SampNativeFunction
 	public static native void setWorldTime(int hour);
 	public static native String getWeaponName(int weaponid);
 	public static native void enableTirePopping(boolean enabled);
+	public static native void enableVehicleFriendlyFire();
 	public static native void allowInteriorWeapons(boolean allow);
 	public static native void setWeather(int weatherid);
 	public static native void setGravity(float gravity);
@@ -362,7 +366,10 @@ public final class SampNativeFunction
 	public static native void textDrawShowForAll(int textid);
 	public static native void textDrawHideForAll(int textid);
 	public static native void textDrawSetString(int textid, String string);
-	
+	public static native void textDrawSetPreviewModel(String text, int modelindex);
+	public static native void textDrawSetPreviewRot(String text, float fRotX, float fRotY, float fRotZ, float fZoom);
+	public static native void textDrawSetPreviewVehCol(String text, int color1, int color2);
+
 	// Gang Zones
 	public static native int gangZoneCreate(float minx, float miny, float maxx, float maxy);
 	public static native void gangZoneDestroy(int zoneid);
