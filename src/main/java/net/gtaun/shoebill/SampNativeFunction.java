@@ -187,9 +187,9 @@ public final class SampNativeFunction
 	public static native void playerTextDrawShow(int playerid, int textId);
 	public static native void playerTextDrawHide(int playerid, int textId);
 	public static native void playerTextDrawSetString(int playerid, int textId, String string);
-	public static native void playerTextDrawSetPreviewModel(int playerid, String text, int modelindex);
-	public static native void playerTextDrawSetPreviewRot(int playerid, String text, float fRotX, float fRotY, float fRotZ, float fZoom);
-	public static native void playerTextDrawSetPreviewVehCol(int playerid, String text, int color1, int color2);
+	public static native void playerTextDrawSetPreviewModel(int playerid, int textId, int modelindex);
+	public static native void playerTextDrawSetPreviewRot(int playerid, int textId, float fRotX, float fRotY, float fRotZ, float fZoom);
+	public static native void playerTextDrawSetPreviewVehCol(int playerid, int textId, int color1, int color2);
 
 	// Per-player variable system (PVars)
 	public static native void setPVarInt(int playerid, String varname, int int_value);
@@ -366,9 +366,9 @@ public final class SampNativeFunction
 	public static native void textDrawShowForAll(int textid);
 	public static native void textDrawHideForAll(int textid);
 	public static native void textDrawSetString(int textid, String string);
-	public static native void textDrawSetPreviewModel(String text, int modelindex);
-	public static native void textDrawSetPreviewRot(String text, float fRotX, float fRotY, float fRotZ, float fZoom);
-	public static native void textDrawSetPreviewVehCol(String text, int color1, int color2);
+	public static native void textDrawSetPreviewModel(int textid, int modelindex);
+	public static native void textDrawSetPreviewRot(int textid, float fRotX, float fRotY, float fRotZ, float fZoom);
+	public static native void textDrawSetPreviewVehCol(int textid, int color1, int color2);
 
 	// Gang Zones
 	public static native int gangZoneCreate(float minx, float miny, float maxx, float maxy);
