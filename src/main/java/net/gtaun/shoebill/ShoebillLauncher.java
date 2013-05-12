@@ -83,6 +83,7 @@ public class ShoebillLauncher
 		catch (NoSuchMethodException e)
 		{
 			System.out.println("Launcher Error: Can't find shoebill constructor, Maybe the shoebill library is outdated.");
+			throw e;
 		}
 		catch (InvocationTargetException e)
 		{
