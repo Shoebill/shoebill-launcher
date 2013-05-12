@@ -62,7 +62,7 @@ public class ShoebillLauncher
 	}
 
 	@SuppressWarnings("unchecked")
-	public static Object createShoebill(Object context) throws Throwable
+	public static Object createShoebill(Object context, int[] amxHandles) throws Throwable
 	{
 		Map<String, Object> properties = Map.class.cast(context);
 		List<File> files = List.class.cast(properties.get(PROPERTY_JAR_FILES));
@@ -74,11 +74,15 @@ public class ShoebillLauncher
 		reader.close();
 		
 		Class<?> clz = classLoader.loadClass(implClass);
-		Constructor<?> constructor = clz.getConstructor();
 		
 		try
 		{
-			return constructor.newInstance();
+			Constructor<?> constructor = clz.getConstructor(int[].class);
+			return constructor.newInstance(amxHandles);
+		}
+		catch (NoSuchMethodException e)
+		{
+			System.out.println("Launcher Error: Can't find shoebill constructor, Maybe the shoebill library is outdated.");
 		}
 		catch (InvocationTargetException e)
 		{
