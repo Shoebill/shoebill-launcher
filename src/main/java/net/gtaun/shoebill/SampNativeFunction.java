@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 MK124
+ * Copyright (C) 2011-2014 MK124
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -162,7 +162,8 @@ public final class SampNativeFunction
 	public static native int getPlayerSurfingVehicleID(int playerid);
 	public static native int getPlayerSurfingObjectID(int playerid);
 	public static native void removeBuildingForPlayer(int playerid, int modelid, float x, float y, float z, float radius);
-	
+	public static native void getPlayerLastShotVectors(int playerid, Object origin, Object hitPos);
+
 	// Attached to bone objects
 	public static native boolean setPlayerAttachedObject(int playerid, int index, int modelid, int bone, float offsetX, float offsetY, float offsetZ, float rotX, float rotY, float rotZ, float scaleX, float scaleY, float scaleZ, int materialcolor1, int materialcolor2);
 	public static native boolean removePlayerAttachedObject(int playerid, int index);
@@ -240,6 +241,8 @@ public final class SampNativeFunction
 	public static native void getPlayerCameraPos(int playerid, Object location);
 	public static native void getPlayerCameraFrontVector(int playerid, Object location);
 	public static native int getPlayerCameraMode(int playerid);
+	public static native float getPlayerCameraAspectRatio(int playerid);
+	public static native float getPlayerCameraZoom(int playerid);
 	public static native void attachCameraToObject(int playerid, int objectid);
 	public static native void attachCameraToPlayerObject(int playerid, int playerobjectid);
 	public static native void interpolateCameraPos(int playerid, float FromX, float FromY, float FromZ, float ToX, float ToY, float ToZ, int time, int cut);
@@ -333,6 +336,18 @@ public final class SampNativeFunction
 	public static native String getPlayerNetworkStats(int playerid);
 	public static native String getNetworkStats();
 	public static native String getPlayerVersion(int playerid); // Returns the SA-MP client revision as reported by the player
+	
+	// Extended admin network stats
+	public static native int getServerTickRate();
+	public static native int netStats_GetConnectedTime(int playerid);
+	public static native int netStats_MessagesReceived(int playerid);
+	public static native int netStats_BytesReceived(int playerid);
+	public static native int netStats_MessagesSent(int playerid);
+	public static native int netStats_BytesSent(int playerid);
+	public static native int netStats_MessagesRecvPerSecond(int playerid);
+	public static native float netStats_PacketLossPercent(int playerid);
+	public static native int netStats_ConnectionStatus(int playerid);
+	public static native String netStats_GetIpPort(int playerid);
 
 	// Menu
 	public static native int createMenu(String title, int columns, float x, float y, float col1width, float col2width);
