@@ -31,7 +31,7 @@ public class ShoebillLauncher
 	};
 
 	
-	public static void loadNativeLibrary() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public static void loadNativeLibrary() throws ClassNotFoundException, SecurityException, IllegalArgumentException
 	{
 		ClassLoader.getSystemClassLoader().loadClass("net.gtaun.shoebill.SampNativeFunction");
 		SampNativeFunction.loadLibrary();
