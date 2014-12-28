@@ -55,6 +55,14 @@ public final class SampNativeFunction
 	public static native void setPlayerCodepage(int playerid, int codepage);
 	public static native int getPlayerCodepage(int playerid);
 
+	public static native int getPublic(int amxHandle, String publicName);
+	public static native int getNative(int amxHandle, String nativeName);
+	public static native int registerPublic(int amxHandle, String publicName, Object callable);
+	public static native int registerNative(int amxHandle, String nativeName, Object callable);
+	public static native Object callFunction(int amxHandle, int functionHandle, Object... args);
+	public static native Object callPublic(int amxHandle, int functionHandle, Object... args);
+	public static native void restartShoebill();
+
 	// ----------------------------------------------------------
 	// a_objects.inc
 

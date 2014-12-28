@@ -21,14 +21,7 @@ public class ShoebillLauncher
 	private static final String SHOEBILL_PATH = "shoebill/";
 	private static final String BOOTSTRAP_FOLDER_NAME = "bootstrap/";
 	
-	private static final FilenameFilter JAR_FILENAME_FILTER = new FilenameFilter()
-	{
-		@Override
-		public boolean accept(File dir, String name)
-		{
-			return name.endsWith(".jar");
-		}
-	};
+	private static final FilenameFilter JAR_FILENAME_FILTER = (dir, name) -> name.endsWith(".jar");
 
 	
 	public static void loadNativeLibrary() throws ClassNotFoundException, SecurityException, IllegalArgumentException
@@ -66,8 +59,9 @@ public class ShoebillLauncher
 	{
 		Map<String, Object> properties = Map.class.cast(context);
 		List<File> files = List.class.cast(properties.get(PROPERTY_JAR_FILES));
-		
-		URLClassLoader classLoader = createUrlClassLoader(files.toArray(new File[0]), ClassLoader.getSystemClassLoader());
+
+		assert files != null;
+		URLClassLoader classLoader = createUrlClassLoader(files.toArray(new File[files.size()]), ClassLoader.getSystemClassLoader());
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("shoebillImpl.txt")));
 		String implClass = reader.readLine();
