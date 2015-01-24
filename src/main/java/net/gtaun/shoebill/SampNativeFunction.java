@@ -23,6 +23,7 @@ import java.io.File;
  *
  * @author MK124
  */
+@SuppressWarnings("UnusedDeclaration")
 public final class SampNativeFunction
 {
 	private static final String LIBRARY_PATH = "plugins/";
@@ -61,6 +62,9 @@ public final class SampNativeFunction
 	public static native int registerNative(int amxHandle, String nativeName, Object callable);
 	public static native Object callFunction(int amxHandle, int functionHandle, Object... args);
 	public static native Object callPublic(int amxHandle, int functionHandle, Object... args);
+
+	public static native void registerHookArguments(String functionName, boolean isCallback, Class<?>... args);
+
 	public static native void restartShoebill();
 
 	// ----------------------------------------------------------
