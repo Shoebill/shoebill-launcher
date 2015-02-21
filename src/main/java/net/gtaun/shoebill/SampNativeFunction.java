@@ -112,6 +112,7 @@ public final class SampNativeFunction
 	// Player
 	public static native void setSpawnInfo(int playerid, int teamid, int skinid, float x, float y, float z, float rotation, int weapon1, int weapon1_ammo, int weapon2, int weapon2_ammo, int weapon3, int weapon3_ammo);
 	public static native void spawnPlayer(int playerid);
+    public static native String[] getAnimationName(int animationIndex);
 
 	// Player info
 	public static native void setPlayerPos(int playerid, float x, float y, float z);
