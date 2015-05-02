@@ -476,4 +476,43 @@ public final class SampNativeFunction
 	// Virtual Worlds
 	public static native void setVehicleVirtualWorld(int vehicleid, int worldid);
 	public static native int getVehicleVirtualWorld(int vehicleid);
+
+	//0.3.7
+
+	public static native int applyActorAnimation(int actorid, String animlib, String animname, float fDelta, int loop, int lockX, int lockY, int freeze, int time);
+	public static native int createActor(int modelid, float x, float y, float z, float angle);
+	public static native int clearActorAnimations(int actorid);
+	public static native int destroyActor(int actorid);
+	public static native void disableRemoteVehicleCollisions(int playerid, int disable);
+	public static native int enablePlayerCameraTarget(int playerid, int enable);
+	public static native float getActorFacingAngle(int actorid);
+	public static native float getActorHealth(int actorid);
+	public static native int getActorPoolSize();
+	public static native int getActorPos(int actorid, Object position);
+	public static native int getActorVirtualWorld(int actorid);
+	public static native int getObjectModel(int objectId);
+	public static native int getPlayerCameraTargetActor(int playerid);
+	public static native int getPlayerCameraTargetObject(int playerid);
+	public static native int getPlayerCameraTargetPlayer(int playerid);
+	public static native int getPlayerCameraTargetVehicle(int playerid);
+	public static native int getPlayerObjectModel(int playerid, int objectid);
+	public static native int getPlayerTargetActor(int playerid);
+	public static native void getVehicleParamsCarDoors(int vehicleid, Object vehicleParams); //Reference
+	public static native void getVehicleParamsCarWindows(int vehicleid, Object vehicleParams); //Reference
+	public static native int getVehicleParamsSirenState(int vehicleid);
+	public static native int getVehiclePoolSize();
+	public static native int isActorInvulnerable(int actorid);
+	public static native int isActorStreamedIn(int actorid, int forplayerid);
+	public static native int isValidActor(int actorid);
+	public static native int setActorFacingAngle(int actorid, float angle);
+	public static native int setActorHealth(int actorid, float health);
+	public static native int setActorInvulnerable(int actorid, boolean invulnerable);
+	public static native int setActorPos(int actorid, float x, float y, float z);
+	public static native int setActorVirtualWorld(int actorid, int virtualWorld);
+	public static native int setObjectNoCameraCol(int objectid);
+	public static native void setObjectsDefaultCameraCol(int disable);
+	public static native int setPlayerObjectNoCameraCol(int playerid, int objectid);
+	public static native void setVehicleParamsCarDoors(int vehicleid, int driver, int passenger, int backleft, int backright);
+	public static native void setVehicleParamsCarWindows(int vehicleid, int driver, int passenger, int backleft, int backright);
+	public static native int getPlayerPoolSize();
 }
