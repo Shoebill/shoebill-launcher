@@ -59,8 +59,31 @@
 			<organizationUrl>https://github.com/Shoebill</organizationUrl>
 			<timezone>+8</timezone>
 		</developer>
+
+		<developer>
+			<name>123marvin123</name>
+			<id>123marvin123</id>
+			<url>https://github.com/123marvin123</url>
+			<email>catboy560@gmail.com</email>
+			<organization>Shoebill</organization>
+			<organizationUrl>https://github.com/Shoebill</organizationUrl>
+			<timezone>+1</timezone>
+		</developer>
 	</developers>
-	
+
+	<distributionManagement>
+		<repository>
+			<id>deployment</id>
+			<name>Releases</name>
+			<url>http://repo.gtaun.net/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>deployment</id>
+			<name>Snapshots</name>
+			<url>http://repo.gtaun.net/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<ciManagement>
 		<system>jenkins</system>
 		<url>http://ci.gtaun.net</url>
