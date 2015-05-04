@@ -313,7 +313,10 @@ public final class SampNativeFunction
 	public static native int addPlayerClass(int modelid, float spawn_x, float spawn_y, float spawn_z, float z_angle, int weapon1, int weapon1_ammo, int weapon2, int weapon2_ammo, int weapon3, int weapon3_ammo);
 	public static native int addPlayerClassEx(int teamid, int modelid, float spawn_x, float spawn_y, float spawn_z, float z_angle, int weapon1, int weapon1_ammo, int weapon2, int weapon2_ammo, int weapon3, int weapon3_ammo);
 	public static native int addStaticVehicle(int modelid, float spawn_x, float spawn_y, float spawn_z, float z_angle, int color1, int color2);
-	public static native int addStaticVehicleEx(int modelid, float spawn_x, float spawn_y, float spawn_z, float z_angle, int color1, int color2, int respawn_delay);
+	public static int addStaticVehicleEx(int modelid, float spawn_x, float spawn_y, float spawn_z, float z_angle, int color1, int color2, int respawn_delay) {
+		return addStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, false);
+	}
+	public static native int addStaticVehicleEx(int modelid, float spawn_x, float spawn_y, float spawn_z, float z_angle, int color1, int color2, int respawn_delay, boolean addsiren);
 	public static native int addStaticPickup(int model, int type, float x, float y, float z, int virtualWorld);
 	public static native int createPickup(int model, int type, float x, float y, float z, int virtualWorld);
 	public static native void destroyPickup(int pickup);
@@ -435,7 +438,11 @@ public final class SampNativeFunction
 	// a_vehicles.inc
 
 	// Vehicle
-	public static native int createVehicle(int model, float x, float y, float z, float rotation, int color1, int color2, int respawnDelay);
+
+	public static int createVehicle(int model, float x, float y, float z, float rotation, int color1, int color2, int respawnDelay) {
+		return createVehicle(model, x, y, z, rotation, color1, color2, respawnDelay, false);
+	}
+	public static native int createVehicle(int model, float x, float y, float z, float rotation, int color1, int color2, int respawnDelay, boolean addsiren);
 	public static native void destroyVehicle(int vehicleid);
 	public static native boolean isVehicleStreamedIn(int vehicleid, int forplayerid);
 	public static native void getVehiclePos(int vehicleid, Object location);
