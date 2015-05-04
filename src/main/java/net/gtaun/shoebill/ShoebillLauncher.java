@@ -1,14 +1,15 @@
 package net.gtaun.shoebill;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,32 +45,12 @@ public class ShoebillLauncher
 
 			try
 			{
-				Object returnValue = method.invoke(null);
-				checkForUpdates();
-				return returnValue;
+				return method.invoke(null);
 			}
 			catch (InvocationTargetException e)
 			{
 				throw e.getTargetException();
 			}
-		}
-	}
-
-	private static void checkForUpdates() {
-		System.out.println("Checking for internal updates (plugin, dependency-manager, launcher)...");
-		ProcessBuilder processBuilder = new ProcessBuilder("java", "-jar", "shoebill-updater.jar", "onlyCheck");
-		Path currentRelativePath = Paths.get("");
-		String s = currentRelativePath.toAbsolutePath().toString();
-		processBuilder.directory(new File(s));
-		try {
-			Process p = processBuilder.start();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			String line;
-			while((line = reader.readLine()) != null)
-				System.out.println(line);
-			p.waitFor();
-		} catch (IOException | InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 
