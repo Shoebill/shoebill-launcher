@@ -58,12 +58,13 @@ public final class SampNativeFunction
 
 	public static native int getPublic(int amxHandle, String publicName);
 	public static native int getNative(int amxHandle, String nativeName);
-	public static native int registerPublic(int amxHandle, String publicName, Object callable);
-	public static native int registerNative(int amxHandle, String nativeName, Object callable);
 	public static native Object callFunction(int amxHandle, int functionHandle, Object... args);
 	public static native Object callPublic(int amxHandle, int functionHandle, Object... args);
     public static native boolean hookCallback(String name, String types);
     public static native boolean unhookCallback(String name);
+
+	public static native boolean registerFunction(int amxHandle, String name, Class... classes);
+    public static native boolean unregisterFunction(int amxHandle, String name);
 
 	public static native void restartShoebill();
 
