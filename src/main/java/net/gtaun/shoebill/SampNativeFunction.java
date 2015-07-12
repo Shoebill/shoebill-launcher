@@ -295,6 +295,16 @@ public final class SampNativeFunction
 	// ----------------------------------------------------------
 	// a_samp.inc
 
+	// Server
+	public static native void setSVarInt(String varname, int value);
+    public static native void setSVarFloat(String varname, float value);
+    public static native void setSVarString(String varname, String value);
+    public static native int getSVarInt(String varname);
+    public static native float getSVarFloat(String varname);
+    public static native String getSVarString(String varname);
+    public static native void deleteSVar(String varname);
+    public static native String sha256Hash(String password, String salt);
+
 	// Util
 	public static native void sendClientMessage(int playerid, int color, String message);
 	public static native void sendClientMessageToAll(int color, String message);
