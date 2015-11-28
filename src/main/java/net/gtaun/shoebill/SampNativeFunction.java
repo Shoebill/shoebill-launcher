@@ -57,7 +57,7 @@ public final class SampNativeFunction
 	public static native int getPlayerCodepage(int playerid);
 
 	public static native int getPublic(int amxHandle, String publicName);
-	public static native int getNative(int amxHandle, String nativeName);
+	public static native int getNative(String nativeName);
 	public static native Object callFunction(int amxHandle, int functionHandle, Object... args);
 	public static native Object callPublic(int amxHandle, int functionHandle, Object... args);
     public static native boolean hookCallback(String name, String types);
