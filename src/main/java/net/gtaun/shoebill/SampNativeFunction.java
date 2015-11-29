@@ -296,13 +296,9 @@ public final class SampNativeFunction
 	// a_samp.inc
 
 	// Server
-	public static native void setSVarInt(String varname, int value);
-    public static native void setSVarFloat(String varname, float value);
-    public static native void setSVarString(String varname, String value);
-    public static native int getSVarInt(String varname);
-    public static native float getSVarFloat(String varname);
-    public static native String getSVarString(String varname);
-    public static native void deleteSVar(String varname);
+    public static native int getConsoleVarAsInt(String varname);
+    public static native boolean getConsoleVarAsBool(String varname);
+    public static native String getConsoleVarAsString(String varname);
     public static native String sha256Hash(String password, String salt);
 
 	// Util
@@ -361,9 +357,6 @@ public final class SampNativeFunction
 	public static native void ban(int playerid);
 	public static native void banEx(int playerid, String reason);
 	public static native void sendRconCommand(String cmd);
-	public native static String getServerVarAsString(String varname);
-	public static native int getServerVarAsInt(String varname);
-	public static native boolean getServerVarAsBool(String varname);
 	public static native String getPlayerNetworkStats(int playerid);
 	public static native String getNetworkStats();
 	public static native String getPlayerVersion(int playerid); // Returns the SA-MP client revision as reported by the player
