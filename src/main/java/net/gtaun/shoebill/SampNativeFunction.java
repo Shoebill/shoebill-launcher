@@ -299,7 +299,20 @@ public final class SampNativeFunction
     public static native int getConsoleVarAsInt(String varname);
     public static native boolean getConsoleVarAsBool(String varname);
     public static native String getConsoleVarAsString(String varname);
+
     public static native String sha256Hash(String password, String salt);
+
+	public static native void setServerVarInt(String varname, int value);
+	public static native int getServerVarAsInt(String varname);
+    public static native void setServerVarString(String varname, String value);
+    public static native String getServerVarAsString(String varname);
+    public static native void setServerVarFloat(String varname, float value);
+    public static native float getServerVarAsFloat(String varname);
+    public static native boolean deleteServerVar(String varname);
+
+    public static native int getServerVarsUpperIndex();
+    public static native int getServerVarType(String varname);
+    public static native String getServerVarNameAtIndex(int index);
 
 	// Util
 	public static native void sendClientMessage(int playerid, int color, String message);
@@ -446,6 +459,7 @@ public final class SampNativeFunction
 	public static int createVehicle(int model, float x, float y, float z, float rotation, int color1, int color2, int respawnDelay) {
 		return createVehicle(model, x, y, z, rotation, color1, color2, respawnDelay, false);
 	}
+
 	public static native int createVehicle(int model, float x, float y, float z, float rotation, int color1, int color2, int respawnDelay, boolean addsiren);
 	public static native void destroyVehicle(int vehicleid);
 	public static native boolean isVehicleStreamedIn(int vehicleid, int forplayerid);
