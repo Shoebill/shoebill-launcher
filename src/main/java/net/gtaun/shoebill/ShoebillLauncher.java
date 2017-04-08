@@ -72,11 +72,11 @@ public class ShoebillLauncher
 		try
 		{
 			Constructor<?> constructor = clz.getConstructor(int[].class);
-			return constructor.newInstance(amxHandles);
+			return constructor.newInstance((Object) amxHandles);
 		}
 		catch (NoSuchMethodException e)
 		{
-			System.out.println("Launcher Error: Can't find shoebill constructor, Maybe the shoebill library is outdated.");
+			System.out.println("Launcher Error: Can't find shoebill constructor, maybe the Shoebill library is outdated.");
 			throw e;
 		}
 		catch (InvocationTargetException e)
